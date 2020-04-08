@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace Teste_Clinica.Models
 {
@@ -33,5 +34,16 @@ namespace Teste_Clinica.Models
         [Required(ErrorMessage = "Campo não pode ficar em branco")]
         [StringLength(10, ErrorMessage = "O Sexo não pode ter mais de 10 caracteres")]
         public string Sexo { get; set; }
+
+        //public List<SelectListItem> ListaSexo = new List<SelectListItem>();
+
+        //public List<SelectListItem> GerarListaSexo()
+        //{
+        //    ListaSexo.Add(new SelectListItem { Text = "Feminino", Value = "Feminino", Selected = true });
+        //    ListaSexo.Add(new SelectListItem { Text = "Masculino", Value = "Masculino" });
+        //    return ListaSexo;
+        //}
+
+
     }
 }

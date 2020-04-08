@@ -1,0 +1,83 @@
+﻿@model Teste_Clinica.Models.Clientes
+
+@{
+    ViewBag.Title = "Detalhes";
+}
+
+<h2>Detalhes do cliente</h2>
+<br />
+<div>
+
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.IdCliente)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IdCliente)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cpf)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cpf)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Endereco)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Endereco)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Telefone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Telefone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Sexo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Sexo)
+        </dd>
+
+    </dl>
+</div>
+<div class="btn btn-sm btn-default">
+    @Html.ActionLink("Editar", "Editar", new { /* id = Model.PrimaryKey */ }) 
+</div>
+<br />
+<br />
+
+<div class="btn btn-default">
+    @Html.ActionLink("Voltar à consulta", "Consulta")
+</div>
+
+<div class="btn btn-default">
+    @Html.ActionLink("Voltar à página principal", "Index", "Sistema")
+</div>

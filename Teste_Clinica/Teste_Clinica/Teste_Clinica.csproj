@@ -274,6 +274,7 @@
     <Content Include="Views\Shared\_Mensagem.cshtml" />
     <Content Include="Views\Clientes\Consulta.cshtml" />
     <Content Include="Views\Clientes\Cadastrar.cshtml" />
+    <Content Include="Views\Clientes\Detalhes.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

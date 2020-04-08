@@ -52,5 +52,55 @@ namespace Teste_Clinica.Models.BD
             
             return cliente;
         }
+
+        public void Cadastrar(Clientes cliente)
+        {
+            cmd.CommandText = "insert into CLIENTE (NOME, CPF, ENDERECO, TELEFONE, EMAIL, SEXO) values(@nome, @cpf, @endereco, @telefone, @email, @sexo)";
+            cmd.Parameters.AddWithValue("@nome", cliente.Nome);
+            cmd.Parameters.AddWithValue("@cpf", cliente.Cpf);
+            cmd.Parameters.AddWithValue("@endereco", cliente.Endereco);
+            cmd.Parameters.AddWithValue("@telefone", cliente.Telefone);
+            cmd.Parameters.AddWithValue("@email", cliente.Email);
+            cmd.Parameters.AddWithValue("@sexo", cliente.Sexo);
+
+            try
+            {
+                cmd.Connection = con.Conectar();
+                cmd.ExecuteNonQuery();
+                con.Desconectar();
+
+            }
+            catch (SqlException ex)
+            {
+                this.mensagem = "ERRO COM BANCO DE DADOS!" + ex;
+            }
+            
+        }
+
+        public Clientes Buscar(int id)
+        {
+            Clientes cliente = new Clientes();
+            cmd.CommandText = "select * from CLIENTE where ID = @id";
+            cmd.Parameters.AddWithValue("@id", id);
+
+            try
+            {
+                cmd.Connection = con.Conectar();
+                dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    AtribuirCliente(cliente, dr);
+                }
+                con.Desconectar();
+
+            }
+            catch (SqlException ex)
+            {
+                this.mensagem = "ERRO COM BANCO DE DADOS!" + ex;
+            }
+
+            return cliente;
+        }
+
     }
 }
