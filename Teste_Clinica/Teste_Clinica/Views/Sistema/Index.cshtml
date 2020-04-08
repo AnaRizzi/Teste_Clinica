@@ -2,6 +2,31 @@
 @{
     ViewBag.Title = "Index";
 }
-
+<style type="text/css">
+    a{
+        color:black;
+    }
+</style>
 <h2> @ViewBag.Usuario , você está logado no sistema da Clínica Estética!</h2>
+<br />
+<div class="container">
+    <div class="row">
+        <h3 class="text-danger">Clientes</h3>
+        <div class="col-sm-3">
+            <div class="btn btn-info">
+                @Html.ActionLink("Consulta de clientes", "Consulta", "Clientes")
+            </div>
+            <br />
+            <br />
+        </div>
+        <div class="col-sm-3">
+            <div class="btn btn-info">
+                @Html.ActionLink("Consulta de clientes", "Consulta", "Clientes")
+            </div>
+            <br />
+        </div>
+
+
+    </div>
+</div>
 

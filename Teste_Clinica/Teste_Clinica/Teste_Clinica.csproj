@@ -128,6 +128,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\BD\ClienteBD.cs" />
+    <Compile Include="Models\BD\Conexao.cs" />
+    <Compile Include="Models\BD\LoginBD.cs" />
     <Compile Include="Models\Clientes.cs" />
     <Compile Include="Models\Login.cs" />
     <Compile Include="Models\MensagemActionResultExtensions.cs" />
@@ -269,10 +272,11 @@
     <Content Include="Views\Sistema\Index.cshtml" />
     <Content Include="Views\Shared\_LayoutInicial.cshtml" />
     <Content Include="Views\Shared\_Mensagem.cshtml" />
+    <Content Include="Views\Clientes\Consulta.cshtml" />
+    <Content Include="Views\Clientes\Cadastrar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Clientes\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

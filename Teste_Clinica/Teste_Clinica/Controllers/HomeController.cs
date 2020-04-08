@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Teste_Clinica.Models;
+using Teste_Clinica.Models.BD;
 
 namespace Teste_Clinica.Controllers
 {
@@ -25,11 +26,26 @@ namespace Teste_Clinica.Controllers
         {
             if (ModelState.IsValid)
             {
-                login.SetUsuarioLogado(login.Usuario);
-                return RedirectToAction("Index", "Sistema").Mensagem("Usuário logado com sucesso!", "Login efetuado");
+                LoginBD verificaLogin = new LoginBD();
+                verificaLogin.verificarLogin(login.Usuario, login.Senha);
+                if (verificaLogin.T)
+                {
+                    login.SetUsuarioLogado(login.Usuario);
+                    return RedirectToAction("Index", "Sistema").Mensagem("Usuário logado com sucesso!", "Login efetuado");
+                }                
+                if (verificaLogin.mensagem != "")
+                {
+                    return View(login).Mensagem(verificaLogin.mensagem);
+                }
             }
-            return View(login);
+            return View(login).Mensagem("Erro no acesso ao sistema, verifique o usuário e a senha.");
         }
 
+        public ActionResult Deslogar()
+        {
+            Login login = new Login();
+            login.SetUsuarioLogado("");
+            return RedirectToAction("Index", "Home").Mensagem("Usuário deslogado com sucesso", "Usuário deslogado");
+        }
     }
 }
