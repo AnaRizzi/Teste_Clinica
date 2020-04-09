@@ -275,6 +275,8 @@
     <Content Include="Views\Clientes\Consulta.cshtml" />
     <Content Include="Views\Clientes\Cadastrar.cshtml" />
     <Content Include="Views\Clientes\Detalhes.cshtml" />
+    <Content Include="Views\Clientes\Excluir.cshtml" />
+    <Content Include="Views\Clientes\Editar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

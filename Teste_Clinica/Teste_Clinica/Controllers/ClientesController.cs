@@ -10,10 +10,16 @@ namespace Teste_Clinica.Controllers
 {
     public class ClientesController : Controller
     {
+        Login login = new Login();
+
         Clientes cliente = new Clientes();
         // GET: Clientes
         public ActionResult Consulta()
         {
+            if (login.GetUsuarioLogado() == "")
+            {
+                return RedirectToAction("Login", "Home").Mensagem("Faça o login antes de acessar o sistema!", "Usuário não encontrado");
+            }
             ClienteBD clienteBD = new ClienteBD();
             
             return View(clienteBD.ListaClientes());
@@ -21,7 +27,10 @@ namespace Teste_Clinica.Controllers
 
         public ActionResult Cadastrar()
         {
-            //ViewBag.ListaSexo = cliente.GerarListaSexo();
+            if (login.GetUsuarioLogado() == "")
+            {
+                return RedirectToAction("Login", "Home").Mensagem("Faça o login antes de acessar o sistema!", "Usuário não encontrado");
+            }
             return View();
         }
 
@@ -42,17 +51,68 @@ namespace Teste_Clinica.Controllers
                     return View(clientedigitado).Mensagem(clienteBD.mensagem);
                 }
             }
-            //ViewBag.ListaSexo = cliente.GerarListaSexo();
             return View(clientedigitado);
         }
 
         public ActionResult Detalhes(int id)
         {
+            if (login.GetUsuarioLogado() == "")
+            {
+                return RedirectToAction("Login", "Home").Mensagem("Faça o login antes de acessar o sistema!", "Usuário não encontrado");
+            }
             ClienteBD clienteBD = new ClienteBD();
 
             return View(clienteBD.Buscar(id));
         }
 
+        public ActionResult Excluir(int id)
+        {
+            if (login.GetUsuarioLogado() == "")
+            {
+                return RedirectToAction("Login", "Home").Mensagem("Faça o login antes de acessar o sistema!", "Usuário não encontrado");
+            }
+            ClienteBD clienteBD = new ClienteBD();
 
+            return View(clienteBD.Buscar(id));
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Excluir(Clientes cliente)
+        {
+            ClienteBD clienteBD = new ClienteBD();
+            clienteBD.Excluir(cliente.IdCliente);
+            if (clienteBD.mensagem == "")
+            {
+                return RedirectToAction("Consulta", "Clientes").Mensagem("Cliente excluído com sucesso!", "Cliente excluído");
+            }
+
+            return View(cliente).Mensagem("Erro ao excluir!" + clienteBD.mensagem, "Erro");
+        }
+
+        public ActionResult Editar(int id)
+        {
+            if (login.GetUsuarioLogado() == "")
+            {
+                return RedirectToAction("Login", "Home").Mensagem("Faça o login antes de acessar o sistema!", "Usuário não encontrado");
+            }
+            ClienteBD clienteBD = new ClienteBD();
+
+            return View(clienteBD.Buscar(id));
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Editar(Clientes cliente)
+        {
+            ClienteBD clienteBD = new ClienteBD();
+            clienteBD.Editar(cliente);
+            if (clienteBD.mensagem == "")
+            {
+                return RedirectToAction("Consulta", "Clientes").Mensagem("Cliente alterado com sucesso!", "Cliente alterado");
+            }
+
+            return View(cliente).Mensagem("Erro ao alterar!" + clienteBD.mensagem, "Erro");
+        }
     }
 }

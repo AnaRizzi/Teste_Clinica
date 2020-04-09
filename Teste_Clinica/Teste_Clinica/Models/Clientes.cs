@@ -9,12 +9,13 @@ namespace Teste_Clinica.Models
 {
     public class Clientes
     {
+        [Display(Name="Id do Cliente")]
         public int IdCliente { get; set; }
 
         [Required(ErrorMessage = "Campo não pode ficar em branco")]
         [StringLength(50, ErrorMessage ="O Nome não pode ter mais de 50 caracteres")]
         public string Nome { get; set; }
-
+        
         [Required(ErrorMessage = "Campo não pode ficar em branco")]
         [StringLength(15, ErrorMessage = "O CPF não pode ter mais de 15 caracteres")]
         public string Cpf { get; set; }
@@ -29,6 +30,7 @@ namespace Teste_Clinica.Models
 
         [Required(ErrorMessage = "Campo não pode ficar em branco")]
         [StringLength(50, ErrorMessage = "O Email não pode ter mais de 50 caracteres")]
+        [RegularExpression(@"^[a-zA-Z]+(([\'\,\.\- ][a-zA-Z ])?[a-zA-Z]*)*\s+<(\w[-._\w]*\w@\w[-._\w]*\w\.\w{2,3})>$|^(\w[-._\w]*\w@\w[-._\w]*\w\.\w{2,3})$", ErrorMessage = "Formato do E-mail Inválido")]
         public string Email { get; set; }
 
         [Required(ErrorMessage = "Campo não pode ficar em branco")]

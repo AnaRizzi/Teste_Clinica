@@ -1,14 +1,14 @@
 ﻿@model Teste_Clinica.Models.Clientes
 
 @{
-    ViewBag.Title = "Detalhes";
+    ViewBag.Title = "Excluir";
 }
 
-<h2>Detalhes do cliente</h2>
-<br />
+<h2>Excluir Cliente</h2>
+
+<h3>Tem certeza de que você deseja excluir este cliente?</h3>
 <div>
 
-    <hr />
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.IdCliente)
@@ -67,23 +67,18 @@
         </dd>
 
     </dl>
-</div>
-<div class="btn btn-sm btn-default">
-    @Html.ActionLink("Editar", "Editar", new { id = Model.IdCliente })
-</div>
-<br />
-<br />
 
-<div class="btn btn-danger">
-    @Html.ActionLink("Excluir", "Excluir", new { id = Model.IdCliente })
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        @Html.HiddenFor(model => model.IdCliente) @* Para registrar o id e enviar para o controller *@
+
+        <div class="form-actions pull-left">
+            <input type="submit" value="Excluir" class="btn btn-danger" />
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; @*espaços em branco*@
+        </div>
+            <div class="btn btn-default">
+                @Html.ActionLink("Cancelar", "Consulta", "Clientes")
+            </div>
+    }
 </div>
-
-<div class="btn btn-default">
-    @Html.ActionLink("Voltar à consulta", "Consulta")
-</div>
-
-<div class="btn btn-default">
-    @Html.ActionLink("Voltar à página principal", "Index", "Sistema")
-</div>
-
-

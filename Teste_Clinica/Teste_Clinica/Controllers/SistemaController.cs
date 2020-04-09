@@ -14,6 +14,11 @@ namespace Teste_Clinica.Controllers
         // GET: Sistema
         public ActionResult Index()
         {
+            if (usuario.GetUsuarioLogado() == "")
+            {
+                return RedirectToAction("Login", "Home").Mensagem("Faça o login antes de acessar o sistema!", "Usuário não encontrado");
+            }
+
             ViewBag.Usuario = usuario.GetUsuarioLogado();
             return View();
         }

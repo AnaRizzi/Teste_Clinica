@@ -102,5 +102,50 @@ namespace Teste_Clinica.Models.BD
             return cliente;
         }
 
+        public void Excluir (int id)
+        {
+       
+            cmd.CommandText = "delete from CLIENTE where ID = @id";
+            cmd.Parameters.AddWithValue("@id", id);
+
+            try
+            {
+                cmd.Connection = con.Conectar();
+                cmd.ExecuteNonQuery();
+                con.Desconectar();
+
+            }
+            catch (SqlException ex)
+            {
+                this.mensagem = "ERRO COM BANCO DE DADOS!" + ex;
+            }
+        }
+
+        public void Editar(Clientes cliente)
+        {
+
+            cmd.CommandText = "update CLIENTE set NOME = @nome, CPF = @cpf, ENDERECO = @endereco, TELEFONE = @telefone, EMAIL = @email, SEXO = @sexo where ID = @id";
+            cmd.Parameters.AddWithValue("@nome", cliente.Nome);
+            cmd.Parameters.AddWithValue("@cpf", cliente.Cpf);
+            cmd.Parameters.AddWithValue("@endereco", cliente.Endereco);
+            cmd.Parameters.AddWithValue("@telefone", cliente.Telefone);
+            cmd.Parameters.AddWithValue("@email", cliente.Email);
+            cmd.Parameters.AddWithValue("@sexo", cliente.Sexo);
+            cmd.Parameters.AddWithValue("@id", cliente.IdCliente);
+
+            try
+            {
+                cmd.Connection = con.Conectar();
+                cmd.ExecuteNonQuery();
+                con.Desconectar();
+
+            }
+            catch (SqlException ex)
+            {
+                this.mensagem = "ERRO COM BANCO DE DADOS!" + ex;
+            }
+        }
+
+
     }
 }
